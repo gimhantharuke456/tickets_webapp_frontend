@@ -13,6 +13,7 @@ import Trains from "../Trains/Trains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Reservations from "../reservations/Reservations";
+import Users from "../Users/Users";
 const { Sider, Content } = Layout;
 
 const Dashboard = () => {
@@ -32,15 +33,17 @@ const Dashboard = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Sider width={250} theme="dark">
         <Menu mode="vertical" theme="dark" defaultSelectedKeys={["1"]}>
-          <Menu.Item
-            onClick={() => {
-              setActiveIndex(2);
-            }}
-            key="2"
-            icon={<UserOutlined />}
-          >
-            Travellers
-          </Menu.Item>
+          {localStorage.getItem("role") == "Backoffice" && (
+            <Menu.Item
+              onClick={() => {
+                setActiveIndex(2);
+              }}
+              key="2"
+              icon={<UserOutlined />}
+            >
+              Travellers
+            </Menu.Item>
+          )}
           <Menu.Item
             onClick={() => {
               setActiveIndex(3);
@@ -59,8 +62,19 @@ const Dashboard = () => {
           >
             Reservations
           </Menu.Item>
+          {localStorage.getItem("role") == "Backoffice" && (
+            <Menu.Item
+              onClick={() => {
+                setActiveIndex(5);
+              }}
+              key="5"
+              icon={<UserOutlined />}
+            >
+              Users
+            </Menu.Item>
+          )}
           <Menu.Item
-            key="5"
+            key="6"
             icon={<LogoutOutlined />}
             onClick={() => {
               handleLogout();
@@ -82,6 +96,7 @@ const Dashboard = () => {
             {activeIndex == 2 && <Travellers />}
             {activeIndex == 3 && <Trains />}
             {activeIndex == 4 && <Reservations />}
+            {activeIndex == 5 && <Users />}
           </div>
         </Content>
       </Layout>
