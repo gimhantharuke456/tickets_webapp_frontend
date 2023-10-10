@@ -33,7 +33,7 @@ const Dashboard = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Sider width={250} theme="dark">
         <Menu mode="vertical" theme="dark" defaultSelectedKeys={["1"]}>
-          {localStorage.getItem("role") == "Backoffice" && (
+          {localStorage.getItem("role") == "BackOffice" && (
             <Menu.Item
               onClick={() => {
                 setActiveIndex(2);
@@ -62,7 +62,7 @@ const Dashboard = () => {
           >
             Reservations
           </Menu.Item>
-          {localStorage.getItem("role") == "Backoffice" && (
+          {localStorage.getItem("role") == "BackOffice" && (
             <Menu.Item
               onClick={() => {
                 setActiveIndex(5);
